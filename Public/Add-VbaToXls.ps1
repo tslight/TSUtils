@@ -26,11 +26,14 @@ function Add-VbaToXls {
     }
 
     process {
+	Write-Host "Adding VBA code to $Xlsx"
+	Write-Verbose "VBA = $VbaCode"
 	$Xlsm = $Xlsx -Replace (".xlsx",".xlsm")
 	$Workbook = $Excel.Workbooks.Open($Xlsx)
 	# Add the VBA code to the first sheet
 	$VBModule = $Workbook.VBProject.VBComponents.Item('Sheet1')
 	$VBModule.CodeModule.AddFromString($VbaCode)
+	Write-Host "Saving new macro enabled spreadsheet to $Xlsm"
 	# https://www.microsoft.com/en-us/microsoft-365/blog/2009/07/07/use-the-vba-saveas-method-in-excel-2007/
 	$Workbook.SaveAs($Xlsm, 52)
 	$Workbook.Close()

@@ -1,4 +1,4 @@
-function ConvertTo-XlsxFromCsv {
+function Convert-CsvToXls {
     [CmdletBinding(SupportsShouldProcess)]
     Param (
 	[Parameter(ValueFromPipeline,Mandatory)]

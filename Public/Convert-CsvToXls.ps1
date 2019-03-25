@@ -47,8 +47,13 @@ function Convert-CsvToXls {
     }
 
     end {
-	$Workbook.SaveAs("$Xlsx.xlsx")
-	Write-Host "File saved to $Xlsx.xlsx"
+	try {
+	    $Workbook.SaveAs("$Xlsx.xlsx")
+	    Write-Host "File saved to $Xlsx.xlsx"
+	} catch [System.Runtime.InteropServices.COMException] {
+	    Write-Warning "CAN'T SAVE $Xlsx.xlsx."
+	    Write-Warning "Someone else may have this file open..."
+	}
 	$Excel.Quit()
 	[System.Runtime.Interopservices.Marshal]::ReleaseComObject($Excel) | Out-Null
 	if (Get-Process Excel -ErrorAction SilentlyContinue) {

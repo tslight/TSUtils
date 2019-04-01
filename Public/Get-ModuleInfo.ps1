@@ -5,27 +5,16 @@ function Get-ModuleInfo {
 	[System.IO.FileInfo]$Path
     )
 
-    $Common = @(
-	'Debug',
-	'ErrorAction',
-	'ErrorVariable',
-	'InformationAction',
-	'InformationVariable',
-	'OutVariable',
-	'OutBuffer',
-	'PipelineVariable',
-	'Verbose',
-	'WarningAction',
-	'WarningVariable',
-	'WhatIf',
-	'Confirm'
-    )
-
-    $Functions = (Get-ChildItem $Path | Select-Object -ExpandProperty Name) -Replace '.ps1',''
+    $Functions = Get-ChildItem $Path | Select-Object -ExpandProperty Fullname
 
     foreach ($Function in $Functions) {
-	$Params = (Get-Command $Function).Parameters | Select-Object -ExpandProperty Keys
-	$Params = $Params | % { if (!$Common.Contains($_)) { $_ } }
+	. $Function
+	$Function = ($Function | Split-Path -Leaf) -Replace '.ps1',''
+	try {
+	    $Params = Get-Params $Function
+	} catch {
+	    throw
+	}
 	if ($Params.Length -eq 1) {
 	    $NewParams = $Params | % { "| ``$_`` |"}
 	} else {

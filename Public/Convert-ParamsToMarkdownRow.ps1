@@ -1,4 +1,4 @@
-function Convert-Params {
+function Convert-ParamsToMarkdownRow {
     [CmdletBinding(SupportsShouldProcess)]
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]

@@ -5,13 +5,15 @@ function Get-ModuleParamsInMarkdown {
 	[System.IO.FileInfo]$ModulePath
     )
 
-    Write-Output "`n<a id='public'></a>`r## PUBLIC COMMANDS`n"
+    Write-Output "`n<a id='public'></a>"
+    Write-Output "## PUBLIC COMMANDS`n"
 
     Get-ChildItem -Path "$ModulePath\Public\*.ps1" -ErrorAction SilentlyContinue |
       Select-Object -ExpandProperty Fullname |
       New-ParamMarkdownTable
 
-    Write-Output "`n<a id=='private'></a>`r## PRIVATE FUNCTIONS`n"
+    Write-Output "`n<a id='private'></a>"
+    Write-Output "## PRIVATE FUNCTIONS`n"
 
     Get-ChildItem -Path "$ModulePath\Private\*.ps1" -ErrorAction SilentlyContinue |
       Select-Object -ExpandProperty Fullname |

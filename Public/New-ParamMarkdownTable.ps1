@@ -6,8 +6,8 @@ function New-ParamMarkdownTable {
     )
 
     begin {
-	Write-Output "| **COMMAND** | **PARAMETER |"
-	Write-Output "|:------------|:------------|"
+	Write-Output "| **COMMAND** | **PARAMETER** |"
+	Write-Output "|:------------|:--------------|"
     }
 
     process {

@@ -5,9 +5,15 @@ function Get-ModuleInfo {
 	[System.IO.FileInfo]$Path
     )
 
-    $Functions = Get-ChildItem $Path | Select-Object -ExpandProperty Fullname
+    $Public  = Get-ChildItem -Path "$Path\Public\*.ps1" -ErrorAction SilentlyContinue |
+      Select-Object -ExpandProperty Fullname
+    $Private = Get-ChildItem -Path "$Path\Private\*.ps1" -ErrorAction SilentlyContinue |
+      Select-Object -ExpandProperty Fullname
 
-    foreach ($Function in $Functions) {
+    Write-Output "| **COMMAND** | **PARAMETER |"
+    Write-Output "|:------------|:------------|"
+
+    foreach ($Function in $Public) {
 	. $Function
 	$Function = ($Function | Split-Path -Leaf) -Replace '.ps1',''
 	try {
@@ -15,19 +21,10 @@ function Get-ModuleInfo {
 	} catch {
 	    throw
 	}
-	if ($Params.Length -eq 1) {
-	    $NewParams = $Params | % { "| ``$_`` |"}
-	} else {
-	    $NewParams = @()
-	    foreach ($Param in $Params) {
-		if ($Params.IndexOf($Param) -eq 0) {
-		    $NewParams += "| ``$Param`` |`n"
-		} else {
-		    $NewParams += "|`t| ``$Param`` |`n"
-		}
-	    }
-	}
+
+	$Params = Convert-Params $Params
 	$Function = "| ``$Function``"
-	Write-Output ("$Function $NewParams").Trim()
+
+	Write-Output ("$Function $Params").Trim()
     }
 }

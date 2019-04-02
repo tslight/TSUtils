@@ -1,10 +1,8 @@
 function Get-ModuleParamsInMarkdown {
     [CmdletBinding(SupportsShouldProcess)]
     Param (
-	[Parameter(Mandatory,ValueFromPipelineByPropertyName)]
+	[Parameter(Mandatory,ValueFromPipeline)]
 	[System.IO.FileInfo]$ModulePath
-	[Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-	[System.IO.FileInfo]$ExportPath
     )
 
     Write-Output "`n<a id='public'></a>`r## PUBLIC COMMANDS`n"

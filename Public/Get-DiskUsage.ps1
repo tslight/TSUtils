@@ -2,7 +2,8 @@ function Get-DiskUsage {
     [cmdletbinding()]
     Param (
 	[Parameter(ValueFromPipeline)]
-	[string]$Path="."
+	[string]$Path=".",
+	[switch]$Bytes
     )
 
     $Children = Get-Item -Force -LiteralPath $Path
@@ -13,5 +14,9 @@ function Get-DiskUsage {
 	  Select -ExpandProperty Sum
     }
 
-    return ConvertFrom-BytesToHumanReadable $Size
+    if ($Bytes) {
+	Write-Output $Size
+    } else {
+	ConvertFrom-BytesToHumanReadable $Size
+    }
 }

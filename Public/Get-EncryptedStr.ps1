@@ -1,6 +1,6 @@
 function Get-EncryptedStr {
     [CmdletBinding(SupportsShouldProcess)]
-    param (
+    Param (
 	[SupportsWildcards()]
 	[Parameter(Mandatory,ValueFromPipeline)]
 	[string[]]$File
@@ -12,7 +12,9 @@ function Get-EncryptedStr {
 	    Write-Verbose "Successfully loaded $File."
 	} catch {
 	    Write-Warning "Failed to load $File."
-	    Write-Warning $_
+	    Write-Warning $_.InvocationInfo.ScriptName
+	    Write-Warning $_.InvocationInfo.Line
+	    Write-Warning $_.Exception.Message
 	}
     }
 }

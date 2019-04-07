@@ -8,7 +8,5 @@ function Get-Creds {
     )
 
     $Pass = Get-EncryptedStr $PwdFile
-    # Easy lookups when creating on these domains. Template, DA account, password
-    $Creds  = New-Object System.Management.Automation.PSCredential $User, $Pass
-    return $Creds
+    New-Object System.Management.Automation.PSCredential $User, $Pass
 }

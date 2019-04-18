@@ -5,11 +5,13 @@ function Write-TSWarning {
 	[object]$Exception
     )
 
-    $Path = ($Exception.InvocationInfo.ScriptName | Out-String).Trim()
-    $Line = ($Exception.InvocationInfo.Line | Out-String).Trim()
-    $Msg  = ($Exception.Exception.Message | Out-String).Trim()
+    process {
+	$Path = ($Exception.InvocationInfo.ScriptName | Out-String).Trim()
+	$Line = ($Exception.InvocationInfo.Line | Out-String).Trim()
+	$Msg  = ($Exception.Exception.Message | Out-String).Trim()
 
-    Write-Verbose "PATH: $Path"
-    Write-Verbose "LINE: $Line"
-    Write-Warning "$Msg"
+	Write-Verbose "PATH: $Path"
+	Write-Verbose "LINE: $Line"
+	Write-Warning "$Msg"
+    }
 }

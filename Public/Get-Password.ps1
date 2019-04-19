@@ -11,13 +11,7 @@ function Get-Password {
     } catch {
 	Write-TSWarning $_ "Failed to get password from $Uri." -Verbose:$VerbosePreference
 	Write-Verbose "Making our own..."
-	$Chars = @()
-	for ($a=33; $a -le 126; $a++) {
-	    $Chars += ,[char][byte]$a
-	}
-	for ($i=0; $i -le 12; $i++) {
-	    $Password += $Chars | Get-Random
-	}
+	$Password = New-Password
     }
 
     if ($Encrypt) {

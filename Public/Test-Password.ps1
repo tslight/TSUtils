@@ -1,7 +1,8 @@
 function Test-Password {
     [CmdletBinding()]
     Param (
-	[string]$Password=(Get-Password)
+	[string]$Password=(Get-Password),
+	[int]$Length=12
     )
 
     # At least 1 uppercase        (?=.*[A-Z])
@@ -10,9 +11,10 @@ function Test-Password {
     # At least 1 lowercase        (?=.*[a-z])
     # At least 10 chars long      {10,}
     # ?= is lookahead, ^ beginning of str, $ end of str
-    $RegEx = "^(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9])(?=.*[a-z]).{10,}$"
+    $RegEx = "^(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9])(?=.*[a-z]).{$Length,}$"
 
     if ($Password -cmatch $Regex) {
+	Write-Verbose "Password is strong enough."
 	Write-Output $Password
     } else {
 	Write-Warning "$Password too weak. Trying again..."

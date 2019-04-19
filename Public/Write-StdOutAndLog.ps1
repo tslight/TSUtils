@@ -1,5 +1,5 @@
 function Write-StdOutAndLog {
-    [cmdletbinding(SupportsShouldProcess)]
+    [cmdletbinding()]
     param (
 	[Parameter(Mandatory,Position=1)]
 	[AllowEmptyString()]

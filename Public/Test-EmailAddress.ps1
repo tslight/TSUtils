@@ -1,5 +1,5 @@
 function Test-EmailAddress {
-    [cmdletbinding(SupportsShouldProcess)]
+    [cmdletbinding()]
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]
 	[string]$EmailAddress

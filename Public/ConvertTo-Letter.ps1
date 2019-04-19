@@ -1,5 +1,5 @@
 function ConvertTo-Letter {
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding()]
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]
 	[int]$Number

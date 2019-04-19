@@ -1,5 +1,5 @@
 function Get-Creds {
-    [cmdletbinding(SupportsShouldProcess)]
+    [cmdletbinding()]
     param (
 	[Parameter(Mandatory,Position=0)]
 	[string]$PwdFile,

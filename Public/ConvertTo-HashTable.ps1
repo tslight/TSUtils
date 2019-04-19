@@ -1,5 +1,5 @@
 function ConvertTo-HashTable {
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding()]
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]
 	[AllowNull()]

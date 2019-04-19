@@ -1,5 +1,5 @@
 function ConvertTo-SecureFile {
-    [CmdletBinding(SupportsShouldProcess,DefaultParameterSetName='Path')]
+    [CmdletBinding(,DefaultParameterSetName='Path')]
     Param (
 	[Parameter(
 	     Mandatory,

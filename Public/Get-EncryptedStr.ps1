@@ -1,5 +1,5 @@
 function Get-EncryptedStr {
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding()]
     Param (
 	[SupportsWildcards()]
 	[Parameter(Mandatory,ValueFromPipeline)]
@@ -11,10 +11,7 @@ function Get-EncryptedStr {
 	    Get-Content $File | ConvertTo-SecureString -ErrorAction Stop
 	    Write-Verbose "Successfully loaded $File."
 	} catch {
-	    Write-Warning "Failed to load $File."
-	    Write-Warning $_.InvocationInfo.ScriptName
-	    Write-Warning $_.InvocationInfo.Line
-	    Write-Warning $_.Exception.Message
+	    Write-TSWarning $_ "Failed to load $File." -Verbose:$VerbosePreference
 	}
     }
 }

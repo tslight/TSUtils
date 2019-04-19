@@ -1,5 +1,5 @@
 function Get-PSScriptProcess {
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding()]
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]
 	[string]$PSScript

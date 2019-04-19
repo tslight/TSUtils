@@ -11,7 +11,7 @@ function Get-DiskUsage {
     foreach ($Child in $Children) {
 	[double]$Size += Get-ChildItem -Recurse -File $Child.FullName |
 	  Measure-Object -Property Length -Sum |
-	  Select -ExpandProperty Sum
+	  Select-Object -ExpandProperty Sum
     }
 
     if ($Bytes) {

@@ -1,5 +1,5 @@
 function Invoke-PowershellAs {
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding()]
     Param (
 	[string]$Username=$(Read-Host "Enter a username"),
 	[switch]$RunAs

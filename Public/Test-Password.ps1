@@ -1,7 +1,6 @@
 function Test-Password {
-    [cmdletbinding(SupportsShouldProcess)]
-    param (
-	[Parameter(Position=1)]
+    [CmdletBinding()]
+    Param (
 	[string]$Password=(Get-Password)
     )
 
@@ -14,9 +13,9 @@ function Test-Password {
     $RegEx = "^(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?=.*[0-9])(?=.*[a-z]).{10,}$"
 
     if ($Password -cmatch $Regex) {
-	return $Password
+	Write-Output $Password
     } else {
 	Write-Warning "$Password too weak. Trying again..."
-	return Test-Password
+	Test-Password
     }
 }

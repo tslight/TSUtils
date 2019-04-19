@@ -1,5 +1,5 @@
 function Get-CsvColumn {
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding()]
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]
 	[System.IO.FileInfo]$Csv,
@@ -14,7 +14,7 @@ function Get-CsvColumn {
 
     process {
 	Import-Csv $Csv |
-	  ? { $_.$Column -ne 'None' -Or $_.$Column -match '^$|^\s+$' } |
+	  Where-Object { $_.$Column -ne 'None' -Or $_.$Column -match '^$|^\s+$' } |
 	  Select-Object -ExpandProperty $Column
     }
 

@@ -1,5 +1,5 @@
 function Get-DecryptedStr {
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding()]
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]
 	[System.Security.SecureString]$EncryptedStr
@@ -13,10 +13,7 @@ function Get-DecryptedStr {
 		)
 	    )
 	} catch {
-	    Write-Warning "Failed to decrypt string."
-	    Write-Warning $_.InvocationInfo.ScriptName
-	    Write-Warning $_.InvocationInfo.Line
-	    Write-Warning $_.Exception.Message
+	    Write-TSWarning $_ "Failed to decrypt string." -Verbose:$VerbosePreference
 	}
     }
 }

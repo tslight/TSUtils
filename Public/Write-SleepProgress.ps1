@@ -1,5 +1,5 @@
 function Write-SleepProgress {
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding()]
     Param (
 	[Parameter(Mandatory,Position=0)]
 	[int]$Seconds,

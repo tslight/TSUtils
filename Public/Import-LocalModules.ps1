@@ -1,12 +1,12 @@
 function Import-LocalModules {
-    [cmdletbinding(SupportsShouldProcess)]
+    [cmdletbinding()]
     param (
 	[Parameter(Position=1)]
 	[array]$Include=@()
     )
 
     $ThisDir = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
-    $Modules = @(gci -Path $ThisDir -Recurse "*.psm1" | % { $_.FullName })
+    $Modules = @(Get-ChildItem -Path $ThisDir -Recurse "*.psm1" | ForEach-Object { $_.FullName })
     $Modules += $Include
 
     foreach ($module in $Modules) {

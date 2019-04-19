@@ -1,5 +1,5 @@
 function Add-XlsTitleRow {
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding()]
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]
 	[System.IO.FileInfo]$Xlsx,

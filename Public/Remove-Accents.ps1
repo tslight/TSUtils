@@ -1,10 +1,17 @@
 function Remove-Accents {
-    [cmdletbinding(SupportsShouldProcess)]
-    param (
-	[Parameter(Mandatory,ValueFromPipeline,Position=0)]
-	[string]$str
+    [CmdletBinding(SupportsShouldProcess)]
+    Param (
+	[Parameter(Mandatory,ValueFromPipeline)]
+	[string[]]$str,
+	[switch]$Force
     )
 
-    # https://lazywinadmin.com/2015/05/powershell-remove-diacritics-accents.html
-    return [Text.Encoding]::ASCII.GetString([Text.Encoding]::GetEncoding("Cyrillic").GetBytes($str))
+    process {
+	if ($Force -or $PSCmdlet.ShouldProcess("ShouldProcess?")) {
+	    # https://lazywinadmin.com/2015/05/powershell-remove-diacritics-accents.html
+	    [Text.Encoding]::ASCII.GetString(
+		[Text.Encoding]::GetEncoding("Cyrillic").GetBytes($str)
+	    )
+	}
+    }
 }

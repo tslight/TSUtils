@@ -1,5 +1,5 @@
 function Convert-CsvToXls {
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding()]
     Param (
 	[Parameter(ValueFromPipeline,Mandatory)]
 	[System.IO.FileInfo[]]$Csv,

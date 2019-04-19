@@ -1,21 +1,26 @@
 function New-Path {
-    [cmdletbinding(SupportsShouldProcess)]
+    [CmdletBinding(SupportsShouldProcess)]
     param (
 	[Parameter(Mandatory,Position=1)]
 	[string]$Path,
 	[Parameter(Mandatory,Position=2)]
-	[string]$Type
+	[string]$Type,
+	[switch]$Force
     )
 
     if (Test-Path $Path) {
 	Write-Verbose "$Path already exists."
     } else {
 	try {
-	    New-Item -Path $Path -ItemType $Type -Force | Out-Null
+	    if ($Force -or $PSCmdlet.ShouldProcess("ShouldProcess?")) {
+		New-Item -Path $Path -ItemType $Type -Force:$Force | Out-Null
+	    }
 	    Write-Verbose "Successfully created $Path."
 	} catch {
-	    Write-Warning "Failed to create $Path."
-	    throw $_.Exception.Message
+	    Write-TSWarning `
+	      -Exception $_ `
+	      -Warning "Failed to create $Path." `
+	      -Verbose:$VerbosePreference
 	}
     }
 }

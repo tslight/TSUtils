@@ -1,5 +1,5 @@
 function Test-IsPSScriptRunning {
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding()]
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]
 	[string]$PSScript

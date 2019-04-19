@@ -1,5 +1,5 @@
 function Merge-Objects {
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess)]
     Param (
 	[Parameter(Mandatory)]
 	[AllowNull()]

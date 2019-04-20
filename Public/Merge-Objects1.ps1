@@ -7,11 +7,11 @@ function Merge-Objects1 {
 
     begin {
 	$Properties = [ordered]@{}
+	$Count = 1
     }
 
     process {
 	foreach ($Object in $Objects) {
-	$Count = 1
 	    foreach ($Property in $Object.PSObject.Properties) {
 		if ($Property.Value -ne $Null) {
 		    try {

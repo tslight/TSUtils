@@ -1,4 +1,4 @@
-function Merge-Objects1 {
+function Merge-MultipleObjects {
     [CmdletBinding()]
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]

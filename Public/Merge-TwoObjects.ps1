@@ -1,4 +1,4 @@
-function Merge-Objects {
+function Merge-TwoObjects {
     [CmdletBinding(SupportsShouldProcess)]
     Param (
 	[Parameter(Mandatory)]

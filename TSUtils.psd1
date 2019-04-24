@@ -1,7 +1,7 @@
 @{
     RootModule = 'TSUtils'
-    ModuleVersion = '0.0.1'
-    # GUID = '4fe29bcd-b2a1-48fc-8475-e748bf8c1485'
+    ModuleVersion = '0.1.0'
+    GUID = '4fe29bcd-b2a1-48fc-8475-e748bf8c1485'
     Author = 'Toby Slight'
     Copyright = '(c) Toby Slight. All rights reserved.'
     Description = 'Random handy dandy Cmdlets :-)'

@@ -13,7 +13,7 @@ foreach ($Function in @($Public + $Private)) {
     try {
 	. $FunctionPath # dot source function
     } catch {
-	Write-Error -Message "Failed to import function at $(FunctionPath): $_"
+	Write-Error -Message "Failed to import function at $($FunctionPath): $_"
     }
 }
 #endregion

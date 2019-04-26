@@ -7,7 +7,7 @@ function Write-SleepProgress {
 	[string]$ProcessName
     )
 
-    Write-Host "Waiting $Seconds seconds for $ProcessName to complete..."
+    Write-Verbose "Waiting $Seconds seconds for $ProcessName to complete..."
     $msg = "Running $ProcessName..."
 
     for ($i=$Seconds; $i -gt 0; $i--) {
@@ -17,5 +17,5 @@ function Write-SleepProgress {
     }
 
     Write-Progress -Activity $msg -Status " " -Completed
-    Write-Host "$ProcessName completed."
+    Write-Verbose "$ProcessName completed."
 }

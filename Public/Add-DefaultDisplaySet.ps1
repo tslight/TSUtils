@@ -15,7 +15,7 @@ function Add-DefaultDisplaySet {
 	}
 	# Create the default property display set
 	$DefaultDisplayPropertySet = New-Object System.Management.Automation.PSPropertySet(
-	    ‘DefaultDisplayPropertySet’,[string[]]$DefaultDisplaySet
+	    'DefaultDisplayPropertySet',[string[]]$DefaultDisplaySet
 	)
 	$PSStandardMembers = [System.Management.Automation.PSMemberInfo[]]@($DefaultDisplayPropertySet)
 	$Object | Add-Member MemberSet PSStandardMembers $PSStandardMembers

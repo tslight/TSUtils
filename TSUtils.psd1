@@ -1,6 +1,6 @@
 @{
     RootModule = 'TSUtils'
-    ModuleVersion = '0.1.1'
+    ModuleVersion = '0.1.2'
     GUID = '4fe29bcd-b2a1-48fc-8475-e748bf8c1485'
     Author = 'Toby Slight'
     Copyright = '(c) Toby Slight. All rights reserved.'

@@ -19,23 +19,13 @@ foreach ($Function in @($Public + $Private)) {
 #endregion
 
 #region read in or create an initial config file and variable
+#. "$PSScriptRoot\Config.ps1" # uncomment to source config parsing logic
 #endregion
 
 #region set variables visible to the module and its functions only
 $Date = Get-Date -UFormat "%Y.%m.%d"
 $Time = Get-Date -UFormat "%H:%M:%S"
-$Green = @{
-    Background = 'Black'
-    Foreground = 'Green'
-}
-$Cyan = @{
-    Background = 'Black'
-    Foreground = 'Cyan'
-}
-$Magenta = @{
-    Background = 'Black'
-    Foreground = 'Magenta'
-}
+. "$PSScriptRoot\Colors.ps1"
 #endregion
 
 #region export Public functions ($Public.BaseName) for WIP modules

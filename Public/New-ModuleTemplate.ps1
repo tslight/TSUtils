@@ -2,34 +2,44 @@ function New-ModuleTemplate {
     [CmdletBinding()]
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]
-	[string[]]$Name,
+	[string[]]$Names,
 	[System.IO.FileInfo]$Path=($env:PSModulePath -split ':|;' | Select-Object -last 1),
 	[switch]$Config
     )
 
     begin {
-	$ModuleTemplateDir = "$PSScriptRoot\..\Templates"
-	$ModuleTemplateWithConfig = "$ModuleTemplateDir\Template-Config.psm1"
-	$ModuleTemplate = "$ModuleTemplateDir\Template.psm1"
-	$ModuleManifest = "$ModuleTemplateDir\Template.psd1"
+	$Templates	= "$PSScriptRoot\..\Templates"
+	$TemplateConfig = "$Templates\TemplateConfig.psm1"
+	$Template	= "$Templates\Template.psm1"
+	$Manifest	= "$Templates\Template.psd1"
+	$TemplateColors = "$Templates\TemplateColors.ps1"
     }
 
     process {
-	$ModuleDirectories = @(
-	    'Classes'
-	    'Public'
-	    'Private'
-	)
+	foreach ($Name in $Names) {
+	    $Directories = @(
+		'Classes'
+		'Public'
+		'Private'
+	    )
 
-	foreach ($Directory in $ModuleDirectories) {
-	    New-Path "$Path\$Name\$Directory" -Type 'Directory'
-	}
+	    foreach ($Directory in $Directories) {
+		New-Path "$Path\$Name\$Directory" -Type 'Directory'
+	    }
 
-	if ($Config) {
-	    Get-Content $ModuleTemplateWithConfig | Set-Content "$Path\$Name\$Name.psm1"
-	} else {
-	    Get-Content $ModuleTemplate | Set-Content "$Path\$Name\$Name.psm1"
+	    Copy-Item $TemplateConfig "$Path\$Name\$Config.ps1"
+
+	    if ($Config) {
+		(Get-Content $Template) -Replace ('\#\.\s','. ') |
+		  Set-Content "$Path\$Name\$Name.psm1"
+	    } else {
+		Copy-Item $Template "$Path\$Name\$Name.psm1"
+	    }
+
+	    Copy-Item $TemplateColors "$Path\$Name\Colors.ps1"
+
+	    (Get-Content $Manifest).Replace('ModuleName',$Name) |
+	      Set-Content "$Path\$Name\$Name.psd1"
 	}
-	Get-Content $ModuleManifest | Set-Content "$Path\$Name\$Name.psd1"
     }
 }

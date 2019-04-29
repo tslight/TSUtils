@@ -19,6 +19,8 @@ function New-ModuleTemplate {
 
     process {
 	foreach ($Name in $Names) {
+	    Set-Content -Value "$Name Placeholder" -Path "$Path\$Name\README.md"
+
 	    $Directories = @(
 		'Classes'
 		'Public'
@@ -27,6 +29,7 @@ function New-ModuleTemplate {
 
 	    foreach ($Directory in $Directories) {
 		New-Path "$Path\$Name\$Directory" -Type 'Directory'
+		Set-Content -Value "$Name $Directory Placeholder" -Path "$Path\$Name\$Directory\README.md"
 		Write-Verbose "Generated $Path\$Name\$Directory."
 	    }
 

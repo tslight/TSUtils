@@ -4,6 +4,7 @@ function New-ModuleTemplate {
 	[Parameter(Mandatory,ValueFromPipeline)]
 	[string[]]$Names,
 	[System.IO.FileInfo]$Path=($env:PSModulePath -split ':|;' | Select-Object -last 1),
+	[string]$Author='Toby Slight',
 	[switch]$UncommentConfig
     )
 
@@ -43,7 +44,7 @@ function New-ModuleTemplate {
 	    Copy-Item $Colors "$Path\$Name\Colors.ps1"
 	    Write-Verbose "Copied $Colors to $Path\$Name\Colors.ps1."
 
-	    (Get-Content $Manifest).Replace('ModuleName',$Name) |
+	    (Get-Content $Manifest) -Replace('ModuleName', $Name) -Replace('AuthorName', $Author) |
 	      Set-Content "$Path\$Name\$Name.psd1"
 	    Write-Verbose "Copied $Manifest to $Path\$Name\$Name.psd1."
 

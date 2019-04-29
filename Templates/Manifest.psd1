@@ -5,8 +5,8 @@ New-ModuleManifest
 @{
     RootModule		= 'ModuleName'
     ModuleVersion	= '0.0.1'
-    Author		= 'Toby Slight'
-    Copyright		= '(c) Toby Slight. All rights reserved.'
+    Author		= 'AuthorName'
+    Copyright		= '(c) AuthorName. All rights reserved.'
     Description		= 'Description'
     RequiredModules	= @(
 

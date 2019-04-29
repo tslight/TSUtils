@@ -4,14 +4,14 @@ function New-ModuleTemplate {
 	[Parameter(Mandatory,ValueFromPipeline)]
 	[string[]]$Names,
 	[System.IO.FileInfo]$Path=($env:PSModulePath -split ':|;' | Select-Object -last 1),
-	[switch]$Config
+	[switch]$UncommentConfig
     )
 
     begin {
 	$Templates = "$PSScriptRoot\..\Templates"
-	$Config	   = "$Templates\Config.psm1"
 	$Module    = "$Templates\Module.psm1"
 	$Manifest  = "$Templates\Manifest.psd1"
+	$Config	   = "$Templates\Config.ps1"
 	$Colors	   = "$Templates\Colors.ps1"
 	$GitIgnore = "$Templates\GitIgnore"
     }
@@ -32,15 +32,15 @@ function New-ModuleTemplate {
 	    Copy-Item $Config "$Path\$Name\Config.ps1"
 	    Write-Verbose "Copied $Config to $Path\$Name\Config.ps1."
 
-	    if ($Config) {
-		(Get-Content $Template) -Replace ('\#\.\s','. ') |
+	    if ($UncommentConfig) {
+		(Get-Content $Module) -Replace ('\#\.\s','. ') |
 		  Set-Content "$Path\$Name\$Name.psm1"
 	    } else {
-		Copy-Item $Template "$Path\$Name\$Name.psm1"
+		Copy-Item $Module "$Path\$Name\$Name.psm1"
 	    }
 	    Write-Verbose "Copied $Module to $Path\$Name\$Name.psm1."
 
-	    Copy-Item $TemplateColors "$Path\$Name\Colors.ps1"
+	    Copy-Item $Colors "$Path\$Name\Colors.ps1"
 	    Write-Verbose "Copied $Colors to $Path\$Name\Colors.ps1."
 
 	    (Get-Content $Manifest).Replace('ModuleName',$Name) |

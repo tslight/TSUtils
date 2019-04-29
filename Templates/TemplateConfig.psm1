@@ -8,7 +8,6 @@ if (Test-Path "$PSScriptRoot\$ConfigFile") {
 	    FileName      = $ConfigFile
 	}
 	$Config = Import-LocalizedData @Params
-	$Config = Import-LocalizedData @Params
 	foreach ($variable in $Config.keys) {
 	    Write-Verbose "Setting $var variable."
 	    New-Variable -Name "$variable" -Value $Config.$variable -Force

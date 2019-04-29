@@ -27,7 +27,7 @@ function New-ModuleTemplate {
 		New-Path "$Path\$Name\$Directory" -Type 'Directory'
 	    }
 
-	    Copy-Item $TemplateConfig "$Path\$Name\$Config.ps1"
+	    Copy-Item $TemplateConfig "$Path\$Name\Config.ps1"
 
 	    if ($Config) {
 		(Get-Content $Template) -Replace ('\#\.\s','. ') |

@@ -8,11 +8,12 @@ function New-ModuleTemplate {
     )
 
     begin {
-	$Templates	= "$PSScriptRoot\..\Templates"
-	$TemplateConfig = "$Templates\TemplateConfig.psm1"
-	$Template	= "$Templates\Template.psm1"
-	$Manifest	= "$Templates\Template.psd1"
-	$TemplateColors = "$Templates\TemplateColors.ps1"
+	$Templates = "$PSScriptRoot\..\Templates"
+	$Config	   = "$Templates\Config.psm1"
+	$Module    = "$Templates\Module.psm1"
+	$Manifest  = "$Templates\Manifest.psd1"
+	$Colors	   = "$Templates\Colors.ps1"
+	$GitIgnore = "$Templates\GitIgnore"
     }
 
     process {
@@ -25,9 +26,11 @@ function New-ModuleTemplate {
 
 	    foreach ($Directory in $Directories) {
 		New-Path "$Path\$Name\$Directory" -Type 'Directory'
+		Write-Verbose "Generated $Path\$Name\$Directory."
 	    }
 
-	    Copy-Item $TemplateConfig "$Path\$Name\Config.ps1"
+	    Copy-Item $Config "$Path\$Name\Config.ps1"
+	    Write-Verbose "Copied $Config to $Path\$Name\Config.ps1."
 
 	    if ($Config) {
 		(Get-Content $Template) -Replace ('\#\.\s','. ') |
@@ -35,11 +38,17 @@ function New-ModuleTemplate {
 	    } else {
 		Copy-Item $Template "$Path\$Name\$Name.psm1"
 	    }
+	    Write-Verbose "Copied $Module to $Path\$Name\$Name.psm1."
 
 	    Copy-Item $TemplateColors "$Path\$Name\Colors.ps1"
+	    Write-Verbose "Copied $Colors to $Path\$Name\Colors.ps1."
 
 	    (Get-Content $Manifest).Replace('ModuleName',$Name) |
 	      Set-Content "$Path\$Name\$Name.psd1"
+	    Write-Verbose "Copied $Manifest to $Path\$Name\$Name.psd1."
+
+	    Copy-Item $GitIgnore "$Path\$Name\.gitignore"
+	    Write-Verbose "Copied $GitIgnore to $Path\$Name\.gitignore."
 	}
     }
 }

@@ -20,13 +20,13 @@ foreach ($Function in @($Public + $Private)) {
 
 #region read in or create an initial config file and variable
 $ConfigFile = "Config.psd1"
-$Params     = @{
-    BaseDirectory = $PSScriptRoot
-    FileName      = $ConfigFile
-}
 
 if (Test-Path "$PSScriptRoot\$ConfigFile") {
     try {
+	$Params     = @{
+	    BaseDirectory = $PSScriptRoot
+	    FileName      = $ConfigFile
+	}
 	$Config = Import-LocalizedData @Params
 	$Config = Import-LocalizedData @Params
 	foreach ($variable in $Config.keys) {

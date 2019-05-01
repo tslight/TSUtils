@@ -72,6 +72,7 @@ function New-ModuleTemplate {
 	    }
 
 	    Set-Content -Value "# $Name Powershell Module" -Path "$Path\$Name\README.md"
+	    Add-Content -Value "`n*$Description*`n" -Path "$Path\$Name\README.md"
 
 	    Copy-Item $Config "$Path\$Name\Config.ps1"
 	    Write-Verbose "Copied $Config to $Path\$Name\Config.ps1."

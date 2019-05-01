@@ -33,9 +33,6 @@ The example above will create Module1, Module2 & Module3 under
 C:\MyModules. Author and Copyright fields in the modules manifest file will
 be set to 'Me'. The psm1 will dot source the Config.ps1 script that handles
 reading in a configuration psd1 file.
-
-.NOTES
-Additional notes
 #>
     [CmdletBinding()]
     Param (

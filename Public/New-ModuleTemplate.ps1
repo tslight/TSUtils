@@ -52,7 +52,6 @@ function New-ModuleTemplate {
     begin {
 	$Templates = "$PSScriptRoot\..\Templates"
 	$Module    = "$Templates\Module.psm1"
-	$Manifest  = "$Templates\Manifest.psd1"
 	$Config	   = "$Templates\Config.ps1"
 	$Colors	   = "$Templates\Colors.ps1"
 	$GitIgnore = "$Templates\GitIgnore"

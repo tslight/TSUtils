@@ -1,4 +1,4 @@
-function Get-Params {
+function Get-Parameters {
     [CmdletBinding()]
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]
@@ -6,6 +6,7 @@ function Get-Params {
     )
 
     begin {
+	$Parameters = @()
 	$Common = @(
 	    'Debug',
 	    'ErrorAction',
@@ -27,12 +28,24 @@ function Get-Params {
 	try {
 	    $Params = (Get-Command $Function).Parameters | Select-Object -ExpandProperty Keys
 	} catch {
+	    Write-TSWarning $_ -Verbose:$VerbosePreference
 	    throw
 	}
+
 	$Params | Where-Object {
 	    if (!$Common.Contains($_)) {
-		$_
+		$Name = $_
+		$Help = Get-Help $Function -Parameter $_
+		$Desc = $Help.Description.Text
+		$Parameters += [PSCustomObject]@{
+		    Name = $Name
+		    Description = $Desc
+		}
 	    }
 	}
+    }
+
+    end {
+	Write-Output $Parameters
     }
 }

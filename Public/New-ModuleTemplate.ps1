@@ -5,9 +5,11 @@ function New-ModuleTemplate {
 
     .DESCRIPTION
     Creates Public, Private & Classes directories. A psm1 script that sources
-    functions from Public & Private and exports those in Public, a manifest
-    file, a file that defines color splatting hash tables and a script for
-    supporting module configuration management.
+    functions from Public & Private and exports those in Public. A manifest
+    file. Two scripts in the root of the module that are dot sourced in the
+    .psm1 file. One defines color splatting hash tables the other provides
+    support for storing sensitive data in variables in a Config.psd1 file that
+    is ignored by git.
 
     .PARAMETER Names
     The names of the modules you want to create.
@@ -19,6 +21,18 @@ function New-ModuleTemplate {
     .PARAMETER Author
     Name of the modules author. This will be inserted into the Author and
     Copyright fields in the manifest file. Defaults to the current users' name
+
+    .PARAMETER Company Name
+    This will be inserted into the Company field of the manifest file. Defaults
+    to nil.
+
+    .PARAMETER Description
+    Description of the module. This will be inserted into the description field
+    of the module manifest and at the top of the main README.md.
+
+    .PARAMETER RequiredModules
+    List of modules that this module depends on. Will be inserted into the
+    RequiredModules field of the manifest file
 
     .PARAMETER UncommentConfig
     A switch that uncomments a line in the psm1 file that dot sources the

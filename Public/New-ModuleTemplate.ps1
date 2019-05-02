@@ -1,26 +1,33 @@
 function New-ModuleTemplate {
-    <#
+<#
     .SYNOPSIS
     Generate module scaffolding and boilerplate.
 
     .DESCRIPTION
-    Creates Public, Private & Classes directories. A psm1 script that sources
-    functions from Public & Private and exports those in Public. A manifest
-    file. Two scripts in the root of the module that are dot sourced in the
-    .psm1 file. One defines color splatting hash tables the other provides
-    support for storing sensitive data in variables in a Config.psd1 file that
-    is ignored by git.
+    Creates the following:
+
+    - Public, Private & Classes directories for storing module functions.
+
+    - A psm1 script that dot sources functions from Public & Private, but exports
+      only those in Public.
+
+    - A manifest file.
+
+    - Two scripts in the root of the module that are dot sourced in the .psm1
+      file. One defines color splatting hash tables, the other provides support
+      for storing sensitive data in variables in a Config.psd1 file that is
+      ignored by git.
 
     .PARAMETER Names
     The names of the modules you want to create.
 
     .PARAMETER Path
     The path to store these modules in. Defaults to the last path found in
-    $env:PSMOdulePath
+    $env:PSModulePath.
 
     .PARAMETER Author
     Name of the modules author. This will be inserted into the Author and
-    Copyright fields in the manifest file. Defaults to the current users' name
+    Copyright fields in the manifest file. Defaults to the current users' name.
 
     .PARAMETER Company Name
     This will be inserted into the Company field of the manifest file. Defaults
@@ -32,7 +39,7 @@ function New-ModuleTemplate {
 
     .PARAMETER RequiredModules
     List of modules that this module depends on. Will be inserted into the
-    RequiredModules field of the manifest file
+    RequiredModules field of the manifest file.
 
     .PARAMETER UncommentConfig
     A switch that uncomments a line in the psm1 file that dot sources the
@@ -50,7 +57,7 @@ function New-ModuleTemplate {
 	RequiredModules = 'All','My','Other','Modules'
     }
     New-ModuleTemplate @Params
-    #>
+#>
     [CmdletBinding()]
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]

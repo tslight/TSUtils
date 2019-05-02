@@ -35,12 +35,12 @@
  |	|	| `PrefixOne`|  |
  |	|	| `PrefixTwo`|  |
 | `New-ModuleTemplate` | Generate module scaffolding and boilerplate. | `Names`| The names of the modules you want to create. |
- |	|	| `Path`|  |
- |	|	| `Author`|  |
+ |	|	| `Path`| The path to store these modules in. Defaults to the last path found in $env:PSModulePath. |
+ |	|	| `Author`| Name of the modules author. This will be inserted into the Author and Copyright fields in the manifest file. Defaults to the current users' name. |
  |	|	| `CompanyName`|  |
- |	|	| `Description`|  |
- |	|	| `RequiredModules`|  |
- |	|	| `UncommentConfig`|  |
+ |	|	| `Description`| Description of the module. This will be inserted into the description field of the module manifest and at the top of the main README.md. |
+ |	|	| `RequiredModules`| List of modules that this module depends on. Will be inserted into the RequiredModules field of the manifest file. |
+ |	|	| `UncommentConfig`| A switch that uncomments a line in the psm1 file that dot sources the configuration management script. This is stored in Config.ps1 and allows reading in of sensitive data stored in a Config.psd1 for setting variables available in the modules' scope. |
 | `New-Path` | New-Path -Path string -Type string -Force -WhatIf -Confirm CommonParameters | `Path`|  |
  |	|	| `Type`|  |
  |	|	| `Force`|  |

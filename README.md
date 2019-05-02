@@ -1,3 +1,6 @@
+# TSUtils Powershell Module
+
+*Collection of miscellaneous powershell functions.*
 
 <a id='public'></a>
 ## PUBLIC CMDLETS

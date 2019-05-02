@@ -1,5 +1,5 @@
 function New-ModuleTemplate {
-<#
+    <#
     .SYNOPSIS
     Generate module scaffolding and boilerplate.
 
@@ -57,7 +57,7 @@ function New-ModuleTemplate {
 	RequiredModules = 'All','My','Other','Modules'
     }
     New-ModuleTemplate @Params
-#>
+    #>
     [CmdletBinding()]
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]

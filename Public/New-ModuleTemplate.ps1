@@ -29,7 +29,7 @@ function New-ModuleTemplate {
     Name of the modules author. This will be inserted into the Author and
     Copyright fields in the manifest file. Defaults to the current users' name.
 
-    .PARAMETER Company Name
+    .PARAMETER CompanyName
     This will be inserted into the Company field of the manifest file. Defaults
     to nil.
 

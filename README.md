@@ -1,60 +1,66 @@
 
 <a id='public'></a>
-## PUBLIC COMMANDS
+## PUBLIC CMDLETS
 
-| **COMMAND** | **PARAMETER** |
-|:------------|:--------------|
-| `Add-VbaToXls` | `Xlsx` |
- |	| `VbaCode` |
-| `Add-XlsTitleRow` | `Xlsx` |
- |	| `Title` |
-| `Convert-CsvToXls` | `Csv` |
- |	| `Xlsx` |
-| `Convert-ParamsToMarkdownRow` | `Params` |
-| `ConvertFrom-BytesToHumanReadable` | `Bytes` |
-| `ConvertFrom-HashTable` | `HashTable` |
-| `ConvertFrom-SecureFile` | `Path` |
- |	| `LiteralPath` |
- |	| `ReplaceFile` |
-| `ConvertTo-HashTable` | `Object` |
-| `ConvertTo-Letter` | `Number` |
-| `ConvertTo-Markdown` | `Object` |
-| `ConvertTo-SecureFile` | `Path` |
- |	| `LiteralPath` |
- |	| `ReplaceFile` |
-| `Export-ModuleParamsToMarkdown` | `ModulePath` |
- |	| `ExportPath` |
- |	| `Overwrite` |
-| `Get-Answer` | `Question` |
-| `Get-Creds` | `PwdFile` |
- |	| `User` |
-| `Get-CsvColumn` | `Csv` |
- |	| `Column` |
-| `Get-DecryptedStr` | `EncryptedStr` |
-| `Get-DiskUsage` | `Path` |
-| `Get-EncryptedStr` | `File` |
-| `Get-ModuleParamsInMarkdown` | `ModulePath` |
-| `Get-Params` | `Function` |
-| `Get-Password` | `Uri` |
-| `Get-PSScriptProcess` | `PSScript` |
-| `Import-LocalModules` | `Include` |
-| `Invoke-PowershellAs` | `Username` |
- |	| `RunAs` |
-| `New-ParamMarkdownTable` | `Path` |
-| `New-Path` | `Path` |
- |	| `Type` |
-| `Remove-Accents` | `str` |
-| `Test-EmailAddress` | `EmailAddress` |
-| `Test-IsPSScriptRunning` | `PSScript` |
-| `Test-Password` | `Password` |
-| `Write-SleepProgress` | `Seconds` |
- |	| `ProcessName` |
-| `Write-StdOutAndLog` | `msg` |
- |	| `log` |
- |	| `Overwrite` |
+| **CMDLET** | **SYNOPSIS** | **PARAMETER** | **DESCRIPTION** |
+|:-----------|:-------------|:--------------|:----------------|
+| `Add-VbaToXls` | Add-VbaToXls -Xlsx FileInfo -VbaCode string CommonParameters | `Xlsx`|  |
+ |	|	| `VbaCode`|  |
+| `Add-XlsTitleRow` | Add-XlsTitleRow -Xlsx FileInfo -Title string CommonParameters | `Xlsx`|  |
+ |	|	| `Title`|  |
+| `Convert-CsvToXls` | Convert-CsvToXls -Csv FileInfo -Xlsx FileInfo CommonParameters | `Csv`|  |
+ |	|	| `Xlsx`|  |
+| `ConvertFrom-BytesToHumanReadable` | ConvertFrom-BytesToHumanReadable -Bytes double CommonParameters | `Bytes`|  |
+| `ConvertFrom-HashTable` | ConvertFrom-HashTable -HashTable hashtable CommonParameters | `HashTable`|  |
+| `ConvertTo-HashTable` | ConvertTo-HashTable -Object Object CommonParameters | `Object`|  |
+| `ConvertTo-Letter` | ConvertTo-Letter -Number int CommonParameters | `Number`|  |
+| `Get-Alphabet` | Get-Alphabet -Upper -Lower -WhatIf -Confirm CommonParameters | `Upper`|  |
+ |	|	| `Lower`|  |
+| `Get-Answer` | Get-Answer -Question string CommonParameters | `Question`|  |
+| `Get-CsvColumn` | Get-CsvColumn -Csv FileInfo -Column string CommonParameters | `Csv`|  |
+ |	|	| `Column`|  |
+| `Get-DiskUsage` | Get-DiskUsage -Path string -Bytes CommonParameters | `Path`|  |
+ |	|	| `Bytes`|  |
+| `Get-LocalVariables` | Get-LocalVariables -Foo string -Bar string -Baz string | `Foo`|  |
+ |	|	| `Bar`|  |
+ |	|	| `Baz`|  |
+| `Get-Parameters` | Get-Parameters -Function string CommonParameters | `Function`|  |
+| `Get-PSScriptProcess` | Get-PSScriptProcess -PSScript string CommonParameters | `PSScript`|  |
+| `Import-LocalModules` | Import-LocalModules -Include array CommonParameters | `Include`|  |
+| `Invoke-PowershellAs` | Invoke-PowershellAs -Username string -RunAs CommonParameters | `Username`|  |
+ |	|	| `RunAs`|  |
+| `Merge-MultipleObjects` | Merge-MultipleObjects -Objects Object CommonParameters | `Objects`|  |
+| `Merge-TwoObjects` | Merge-TwoObjects -ObjectOne Object -ObjectTwo Object -PrefixOne string -PrefixTwo string -WhatIf -Confirm CommonParameters | `ObjectOne`|  |
+ |	|	| `ObjectTwo`|  |
+ |	|	| `PrefixOne`|  |
+ |	|	| `PrefixTwo`|  |
+| `New-ModuleTemplate` | New-ModuleTemplate -Names string -Path FileInfo -Author string -CompanyName string -Description string -RequiredModules string -UncommentConfig CommonParameters | `Names`|  |
+ |	|	| `Path`|  |
+ |	|	| `Author`|  |
+ |	|	| `CompanyName`|  |
+ |	|	| `Description`|  |
+ |	|	| `RequiredModules`|  |
+ |	|	| `UncommentConfig`|  |
+| `New-Path` | New-Path -Path string -Type string -Force -WhatIf -Confirm CommonParameters | `Path`|  |
+ |	|	| `Type`|  |
+ |	|	| `Force`|  |
+| `Remove-Accents` | Remove-Accents -str string -Force -WhatIf -Confirm CommonParameters | `str`|  |
+ |	|	| `Force`|  |
+| `Set-DefaultDisplayPropertySet` | Set-DefaultDisplayPropertySet -Object Object -Properties string -TypeName string CommonParameters | `Object`|  |
+ |	|	| `Properties`|  |
+ |	|	| `TypeName`|  |
+| `Test-EmailAddress` | Test-EmailAddress -EmailAddress string CommonParameters | `EmailAddress`|  |
+| `Test-IsPSScriptRunning` | Test-IsPSScriptRunning -PSScript string CommonParameters | `PSScript`|  |
+| `Write-SleepProgress` | Write-SleepProgress -Seconds int -ProcessName string CommonParameters | `Seconds`|  |
+ |	|	| `ProcessName`|  |
+| `Write-StdOutAndLog` | Write-StdOutAndLog -msg string -log string -Overwrite CommonParameters | `msg`|  |
+ |	|	| `log`|  |
+ |	|	| `Overwrite`|  |
+| `Write-TSWarning` | Write-TSWarning -Exception Object -Warning string CommonParameters | `Exception`|  |
+ |	|	| `Warning`|  |
 
 <a id='private'></a>
 ## PRIVATE FUNCTIONS
 
-| **COMMAND** | **PARAMETER** |
-|:------------|:--------------|
+| **CMDLET** | **SYNOPSIS** | **PARAMETER** | **DESCRIPTION** |
+|:-----------|:-------------|:--------------|:----------------|

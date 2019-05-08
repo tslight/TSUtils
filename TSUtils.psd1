@@ -12,7 +12,7 @@
 RootModule = 'TSUtils'
 
 # Version number of this module.
-ModuleVersion = '0.0.1'
+ModuleVersion = '0.1.3'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -94,20 +94,20 @@ PrivateData = @{
 
     PSData = @{
 
-        # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+	# Tags applied to this module. These help with module discovery in online galleries.
+	# Tags = @()
 
-        # A URL to the license for this module.
-        # LicenseUri = ''
+	# A URL to the license for this module.
+	# LicenseUri = ''
 
-        # A URL to the main website for this project.
-        # ProjectUri = ''
+	# A URL to the main website for this project.
+	# ProjectUri = ''
 
-        # A URL to an icon representing this module.
-        # IconUri = ''
+	# A URL to an icon representing this module.
+	# IconUri = ''
 
-        # ReleaseNotes of this module
-        # ReleaseNotes = ''
+	# ReleaseNotes of this module
+	# ReleaseNotes = ''
 
     } # End of PSData hashtable
 
@@ -120,4 +120,3 @@ PrivateData = @{
 # DefaultCommandPrefix = ''
 
 }
-

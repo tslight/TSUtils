@@ -62,7 +62,7 @@ function New-ModuleTemplate {
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]
 	[string[]]$Names,
-	[System.IO.FileInfo]$Path=$(Get-Item -Path .\).FullName,
+	[System.IO.DirectoryInfo]$Path=$(Get-Item -Path .\).FullName,
 	[string]$Author=$env:USER,
 	[string]$CompanyName="",
 	[string]$Description="Module Description",

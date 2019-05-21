@@ -1,3 +1,6 @@
+using namespace System.Management.Automation
+using namespace System.Collections.ObjectModel
+
 function New-DynamicParam {
     [CmdletBinding()]
     Param (
@@ -13,23 +16,24 @@ function New-DynamicParam {
     )
 
     process {
-	$ParamAttrib = New-Object System.Management.Automation.ParameterAttribute
+	$ParamAttrib = New-Object ParameterAttribute
 	$ParamAttrib.Mandatory = $Mandatory
 	$ParamAttrib.ValueFromPipeline = $ValueFromPipeline
 	$ParamAttrib.ValueFromPipelineByPropertyName = $ValueFromPipelineByPropertyName
 	$ParamAttrib.ParameterSetName = $ParameterSetName
 
-	$AttribColl = New-Object System.Collections.ObjectModel.Collection[System.Attribute]
+	$AttribColl = New-Object Collection[System.Attribute]
 	$AttribColl.Add($ParamAttrib)
 	$AttribColl.Add(
-	    (New-Object System.Management.Automation.ValidateSetAttribute($Completions))
+	    (New-Object ValidateSetAttribute($Completions))
 	)
-	$RuntimeParam = New-Object System.Management.Automation.RuntimeDefinedParameter(
+
+	$RuntimeParam = New-Object RuntimeDefinedParameter(
 	    $ParamName,
 	    $Type,
 	    $AttribColl
 	)
-	$RuntimeParamDic = New-Object System.Management.Automation.RuntimeDefinedParameterDictionary
+	$RuntimeParamDic = New-Object RuntimeDefinedParameterDictionary
 	$RuntimeParamDic.Add($ParamName, $RuntimeParam)
 	return $RuntimeParamDic
     }

@@ -5,7 +5,7 @@ function New-DynamicParam {
 	[string]$ParamName,
 	[Parameter(Mandatory)]
 	[array]$Completions,
-	[type]$Type=[string],
+	[type]$Type=[string[]],
 	[boolean]$Mandatory=$True,
 	[boolean]$ValueFromPipeline=$False,
 	[boolean]$ValueFromPipelineByPropertyName=$False,

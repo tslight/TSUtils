@@ -12,7 +12,8 @@ function New-DynamicParam {
 	[boolean]$Mandatory=$True,
 	[boolean]$ValueFromPipeline=$False,
 	[boolean]$ValueFromPipelineByPropertyName=$False,
-	[string]$ParameterSetName='__AllParameterSets'
+	[string]$ParameterSetName='__AllParameterSets',
+	[string]$Help='Placeholder help message'
     )
 
     process {
@@ -21,6 +22,7 @@ function New-DynamicParam {
 	$ParamAttrib.ValueFromPipeline = $ValueFromPipeline
 	$ParamAttrib.ValueFromPipelineByPropertyName = $ValueFromPipelineByPropertyName
 	$ParamAttrib.ParameterSetName = $ParameterSetName
+	$ParamAttrib.HelpMessage = $Help
 
 	$AttribColl = New-Object Collection[System.Attribute]
 	$AttribColl.Add($ParamAttrib)

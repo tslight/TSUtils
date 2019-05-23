@@ -26,7 +26,8 @@ function Get-Parameters {
 
     process {
 	try {
-	    $Params = (Get-Command $Function).Parameters | Select-Object -ExpandProperty Keys
+	    $Params = (Get-Command $Function).Parameters |
+	      Select-Object -ExpandProperty Keys
 	} catch {
 	    Write-TSWarning $_ -Verbose:$VerbosePreference
 	    throw
@@ -35,11 +36,13 @@ function Get-Parameters {
 	$Params | Where-Object {
 	    if (!$Common.Contains($_)) {
 		$Name = $_
-		$Help = Get-Help $Function -Parameter $_
-		$Desc = $Help.Description.Text
-		$Parameters += [PSCustomObject]@{
-		    Name = $Name
-		    Description = $Desc
+		$Help = Get-Help $Function -Parameter $_ -ea sil
+		if ($Help) {
+		    $Desc = $Help.Description.Text
+		    $Parameters += [PSCustomObject]@{
+			Name = $Name
+			Description = $Desc
+		    }
 		}
 	    }
 	}

@@ -7,12 +7,12 @@ function ConvertTo-HashTable {
     )
 
     process {
-	$HashTable = @{}
+	$HashTable = [ordered]@{}
 
 	foreach ($Property in $Object.PSObject.Properties.Name) {
 	    $HashTable[$Property] = $Object.$Property
 	}
 
-	return $HashTable
+	Write-Output $HashTable
     }
 }

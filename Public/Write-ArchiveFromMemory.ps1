@@ -17,6 +17,7 @@ function Write-ArchiveFromMemory {
 		    $Reader = New-Object System.IO.StreamReader($Entry.Open())
 		    $Contents = $Reader.ReadToEnd()
 		    Set-Content -Value $Contents -Path "$Destination\$($Entry.Name)"
+		    Get-Item "$Destination\$($Entry.Name)"
 		    Write-Verbose "Successfully wrote $($Entry.Name) to $Destination."
 		} catch {
 		    Write-Error. $_.Exception.Message

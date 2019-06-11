@@ -11,6 +11,7 @@ if (Test-Path "$PSScriptRoot\$ConfigFile") {
 	foreach ($variable in $Config.keys) {
 	    Write-Verbose "Setting $var variable."
 	    New-Variable -Name "$variable" -Value $Config.$variable -Force
+	    Export-ModuleMember -Variable $variable
 	}
     } catch {
 	Write-Warning "Invalid configuration data in $ConfigFile."

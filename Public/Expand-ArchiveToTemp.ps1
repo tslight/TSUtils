@@ -3,9 +3,14 @@ function Expand-ArchiveToTemp {
     Param (
 	[Parameter(Mandatory,ValueFromPipeline)]
 	[System.IO.FileInfo[]]$Archive,
-	[Parameter(Mandatory)]
 	[string]$Directory
     )
+
+    begin {
+	if (-Not $Directory) {
+	    $Directory = $Archive.BaseName
+	}
+    }
 
     process {
 	foreach ($zip in $Archive) {

@@ -16,7 +16,10 @@ function New-ParamMarkdownTable {
 	. $Path
 	$Function = ($Path | Split-Path -Leaf) -Replace '.ps1',''
 	try {
-	    $Synopsis = (Get-Help $Function).Synopsis.Trim() -Replace "\[|\]|<|>",""
+	    $Synopsis = (Get-Help $Function).Synopsis.Trim() -Replace "\[|\]|<|>","" -Replace "`n", " "
+	    if ($Synopsis -match "^$Function .*") {
+		$Synopsis = ""
+	    }
 	    if ($Params = Get-Parameters $Function) {
 		$Params = Convert-ParamsToMarkdownRow $Params
 		$Function = "| ``$Function``"
